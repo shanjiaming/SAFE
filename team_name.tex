@@ -1,0 +1,391 @@
+%%
+%% This is file `mcmthesis-demo.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% mcmthesis.dtx  (with options: `demo')
+%%
+%% -----------------------------------
+%%
+%% This is a generated file.
+%%
+%% Copyright (C)
+%%     2010 -- 2015 by Zhaoli
+%%     2014 -- 2016 by Liam 
+%%     2017 -- 2019 by Xuehan
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Current Maintainer of this work is Xuehan.
+%%
+\documentclass{mcmthesis}
+\mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
+        tcn = 55280, problem = A,
+        sheet = true, titleinsheet = true, keywordsinsheet = true,
+        titlepage = true}
+\usepackage{palatino}
+\usepackage{mwe}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{gensymb}
+\usepackage[ruled,lined,commentsnumbered]{algorithm2e}
+\usepackage{diagbox}
+\usepackage{enumerate}
+\usepackage{tabu,adjustbox}
+\usepackage[
+natbib = true,  
+backend=biber,  
+% backend=bibtex,  
+isbn=false,  
+url=false,  
+doi=false,  
+eprint=false,  
+style=numeric,  
+% sorting=nyt,  
+% sortcites = true
+]{biblatex}
+\usepackage{biblatex2bibitem}
+\addbibresource{ref.bib}
+
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm} %%页边距,若对左右边距进行修改，请保证左右边距一样，并且将mcmthesis.cls第81行对应的margin参数设置为相同数值
+\begin{document}
+\linespread{0.6} %%行间距
+\setlength{\parskip}{0.5\baselineskip} %%段间距
+\title{The Great Virtues of Our Great Grand Giant Supervisor QYH}
+
+\date{\today}
+\begin{abstract}
+ 		This is the \textbf{SUMMARY}
+
+	\begin{keywords}
+	keywords1,keywords2,keywords3
+	\end{keywords}
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+%\section{Example For Section}
+\section{Introduction}
+
+\subsection{Problem Background}
+
+%enhancing the efficiency of information transmission is becoming more and more important.
+ Advancing towards a booming flow of information currents, the world is
+ requiring more and more efficient broadcasting techniques to keep up with its
+ own pace. Meanwhile, the number of Internet users is still under a sharp grow,
+ making the topology of the whole system even more sophisticated. As a result,
+ the urge to found a comprehensive optimum in the transmission system is added
+ to schedule.
+ 
+ Previous broadcasting involved the technique of unicast (or singlecast), by which
+ only one pack of information is sent to one specific user at one time. Although
+ its specific destination minimizes the capacity occupied by headers, this method
+ would lead to great redundancy if the same pack needs to be sent to multiple users
+ along the same path. We must appeal to a technique with greater efficiency in face
+ with the rising transmission demand. Therefore, we need to find a balance between
+ the capacity loss caused by headers and the redundancy of packs.
+
+\subsection{Our work}
+This paper aims to find a comprehensive optimum of  a transmitting system. By
+investigating the combination of singlecasting and multicasting, we gradually gain
+insights into  and are able to develop an advanced 
+
+\section{Assumptions and Definitions}
+\subsection{Our Assumptions}
+
+Def. a node u's distance from another node v: the length of the minimum path from u to v.
+
+Assumptions:
+
+\[
+ \begin{pmatrix}
+	 1 & 2 & 3\\ 
+4 & 5 &6
+	\end{pmatrix}
+\]
+
+1) The topology is relatively balanced, namely, the majority of nodes [sharing the same minimum length of path from the source to themselves] in the original graph have approximate number of neighbors.
+[sharing the same distance from the source]
+
+2) The complexity of the network is in proportion to the scale of the network, i.e. the number of nodes with [larger length of minimum path from the source to themselves] are generally larger than the number of those with smaller length.
+[larger distance from the source]
+
+3) The network is an undirected and connected graph, i.e. if information can be transferred from router A to router B, it can be transferred backwards. We ditch those nodes which are disconnected to the source.
+
+4) The effect of redundancy is of linear growth rather than of exponential growth, i.e. the loss function brought by redundancy is in proportion to the number of redundant edges, but not in exponential relation to the number of repeatedly utilized edges.
+
+5) The effectiveness in the network is only related to the length of path a data packet covered and has nothing to do with the number of packets or the computing power of routers where packets are transferred.
+
+6) The network uses IP addresses to recognize different routers. We assume the global percentage of IPv6 is approximate to the percentage of IPv6 addresses visiting Google according to the statistical data given by Google, i.e. 32%.
+
+
+
+\subsection{Variable Definitions}
+\begin{center}
+	\begin{tabular}{cl}
+		\hline
+		Symbol & Definition \\
+		\hline
+		$f_{1}$ & a function describing redundancy\\
+		$f_{2}$ & a better function \\ 
+		$f_{s}$ & \\ 
+		$S_{i}$ & \\ 
+		$U$ & \\
+		$I_{A}$ & \\
+		$I_{H}$ & \\
+		$I_{G}$ & \\
+		$N_{i}$ & \\
+		$m$ & \\
+		$i$ & \\
+		$N$ & \\
+		$R$ & \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\section{Topologies with Certain Packet Capacity -- Task 1}
+\subsection{Calculating the maximum number of receiving points}
+
+We study possible paths originating from node A. Since duplicate payloads are not allowed to appear, the data can only access node B C D once, respectively. Then we reach the next level of the question. 
+
+Given that the maximum number of branches on the header is 3, we know that the pack can get through at most 2 edges after reaching the second point. That means at most two other points can be reached. 
+
+However, there is only one edge (D-H) after node D, indicating that only one other point is available. As to node B and node C, the upper limit can both be reached.
+
+Therefore, the number of receiving points cannot exceed 9. In detail, 3 for B and two other points, 3 for C and two other points, 2 for D and one other point and 1 for the source point A.
+
+We can easily find a none-redundant distribution with 9 receiving points. The example is as follows:
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width = 0.6\textwidth]{figure/fig.1-1.png} 
+% 	\caption{e.g.}
+% 	\label{fig:1-1}
+% \end{figure}
+
+
+
+
+
+\begin{enumerate}[ \quad(1).]
+\item A-B-E-F
+\item A-C-F-J
+\item A-D-H
+\end{enumerate}
+
+% \subsection{Calculating the minimum number of redundancy}
+
+% Primarily, we discover that paths \textcolor[RGB]{180,76,151}{\bf{A-E-H-O}} and \textcolor[RGB]{230,176,112}{\bf{A-D-J-M}} are mandatory if we want all nodes to be reached. The reason is that, these two paths are the only approaches to get to node O and M -- All the other available paths cover more than 3 edges, which would violate the pack capacity. 
+
+% Therefore, another two headers \textcolor[RGB]{91,126,145}{\bf{AE-EI-EL}} and header \textcolor[RGB]{222,108,141}{\bf{AC-CG-CK}} can be determined. Since nodes I and L can only be reached through edge A-E if we don't want to violate the maximum capacity, we adopt the former multicast header to keep the number of redundancy as small as possible. The same is with the latter. 
+
+% Then we find that we need at least two single headers to get to node P, Q, N. The 3 nodes are all 2 edges away from the source, so multitasking can only reach 2 of 3. Apparently, the remaining node requires another singlecast to be covered. These, along with the mandatory path A-D-J-M demonstrated above, suggest that the minimum number of redundancy must be larger or equal to 3 in that edge A-D has already been traveled for 3 times.
+
+% We find such a pattern shown in the figure below
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width = 0.6\textwidth]{figure/fig.1-2.png} 
+% 	\caption{e.g.}
+% 	\label{fig:1-2}
+% \end{figure}
+
+% Thus, the minimum number of redundancy in this case is 3.
+
+
+% \section{Topologies with Uncertain Packet Capacity -- Task 2}
+
+% We try to figure out what makes a system relatively optimal. To do so, we investigate where and how superfluous information is generated. We discover two main sources of such information:
+
+% One is redundancy on the edges. Packets with the same payload may pass through the same edge multiple times, although in different headers. This leads to a loss of efficiency.
+
+% The other is the headers. They are also invalid information that reduce the actual capacity of the pack.
+
+% Therefore, to reach the optimum, we should find a balance between the two.
+
+% \subsection{Setting up an assessing model -- establishing $f_1$}
+
+% We define the following variables.
+
+% \begin{center}
+% 	\begin{tabular}{cl}
+% 		\hline
+% 		Symbol & Definition \\
+% 		\hline
+% 		$H$ & The scale of header information\\ 
+% 		$e$ & The amount of edges utilized by a single header pack\\
+% 		$I_{G}$ & jrjt\\
+% 		\hline
+% 	\end{tabular}
+% \end{center}
+
+
+%  It can represent the efficiency of a system to a fair extent.
+
+% Based on the model, we are now able to calculate the degree of efficiency of a certain transmitting pattern. The minimum value of $f_1$ represents the most advanced pattern.
+
+% \subsection{Optimization of the present model -- establishing $f_2$}
+
+% However, we find that this model may not work well in certain complicated situations. On one hand, the model does not take into account whether the load of an edge changes from zero to one. But in real situations this change will also add to the consumption of the system. On the other hand, the model may suggest the pack go through unnecessarily long paths to avoid redundancy on a single edge. We have raised an example in the following topology to illustrate this.
+
+% THIS IS AN IMAGE (CUE QYH)
+
+% Consequently, we create another model to handle the dilemma. 
+
+% %\quad\text{ $f_2$ = ( W * $I_{A}$ ) /( $I_{G}$ * $I_{H}$ ) }
+% We define the following variables.
+
+% \begin{center}
+% 	\begin{tabular}{cl}
+% 		\hline
+% 		Symbol & Definition \\
+% 		\hline
+% 		$E$ & The amount of utilized edges\\
+% 		$U$ & The amount of receiving nodes\\
+% 		$I_{A}$ & The scale of information per pack\\ 
+% 		$I_{G}$ & The scale of valid information per pack\\ 
+% 		$I_{H}$ & The scale of header information per pack\\ 
+% 		\hline
+% 	\end{tabular}
+% \end{center}
+
+% %\begin{flushright}
+% %	\begin{table}[htbp]
+% %	% \centering
+% %	% \footnotesize
+% %	
+% %	\everyrow{\hline}
+% %	\tabulinesep=1.2mm
+% %	
+% %	\begin{tabu}to\textwidth {|X[c]|X[1.5, l]|}
+% %		\rowfont[c]{} Dotation &  Definition\\
+% %		Dotation adfadfadfadf & Definition dafad adf dfa d afa df adf ad fa d\\
+% %	\end{tabu}
+% %	
+% %	\caption{Meaningful caption}
+% %	\label{T:my_table}
+% %	
+% %\end{table}
+% %\end{flushright}
+
+% Note 1: $I_{A}$ $I_{G}$ $I_{H}$ are all measured by how many users' information the whole pack / valid part / head part can hold .
+
+% Note 2: The amount of receiving nodes include any node that is covered in a transmission path. In this specific task this doesn't matter, but we may need the declaration later on.
+
+
+% We establish the following formula:
+
+% \quad$f_2 = \frac{I_{A} * E}{\sum I_{G} * I_{H}} * \frac{E}{U}$
+
+
+% where $f_2$ stands for the average number of edges that a receiving point utilizes to transmit one unit of valid information.
+
+
+% \subsection{Implementation of the models -- Path Enumeration}
+
+
+% \section{Generalization to Topologies with Uncertain Packet Capacity -- Task 3}
+% \subsection{Reintroduction of our assessing models and their equalization}
+
+
+% Example for Fig.~\ref{fig:eg1}.
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width = 0.3\textwidth]{figure/figure1.png} 
+% 	\caption{e.g.}
+% 	\label{fig:eg1}
+% \end{figure}
+
+% Example for Tab.~\ref{tbl:eg1}.
+
+%\begin{table}[H]
+%	\centering
+%	\caption{e.g}
+%	\begin{tabular}{|c|c|c|}
+%	\toprule
+%	  & Symbol &Definition\\
+%	\midrule
+%	1 & 2 & 3\\	
+%	1 & 2 & 3\\
+%	1 & 2 & 3\\
+%	1 & 2 & 3\\
+%	1 & 2 & 3\\
+%	\bottomrule
+%	\end{tabular}
+%	\label{tbl:eg1}
+%\end{table}
+
+
+% \begin{table}[H]
+% 	\centering
+% 	\caption{e.g}
+% 	\begin{tabular}{ccc}
+% 	\hline
+% 	\diagbox{a}{b}{c} & Symbol &Definition\\
+% 	\hline
+% 	1 & 2 & 3\\
+% 	1 & 2 &  \\
+% 	1 &   & 3\\
+% 	1 & 2 & 3\\
+% 	  &   & 3\\
+% 	\hline
+% 	\end{tabular}
+% 	\label{tbl:eg2}
+% \end{table}
+
+% %Example for Citation\cite{Jay_Rules}
+% %
+% %%\bibliographystyle{IEEETran}
+% %\bibliographystyle{plain}
+% %\bibliography{newrefs}
+
+% %\begin{center}
+% %	\begin{tabu} {|p{3cm}|X[l]|}
+% %		\addlinespace[1cm]
+% %		\multicolumn{2}{l}{ \textit{ [100]{bla bla} } } \\
+% %		\toprule
+% %		bla bla & bla bla bla bla bla bla bla bla \\
+% %		bla bla & bla bla bla bla bla bla bla bla \\
+% %		bla bla & bla bla bla bla bla bla bla bla \\
+% %		\bottomrule
+% %	\end{tabu}
+% %\end{center}
+
+\newpage
+\cite{ho}
+
+good  bye  space  good 
+
+
+\begin{align}
+	good  bye
+\end{align}
+
+\printbibliography
+
+% \bibliography{References}
+% \newpage
+% \printbibitembibliography
+
+
+\begin{appendices}
+\section{Code Example}
+\lstinputlisting[language=python]{code/ourcode.py}
+
+\end{appendices}
+\end{document}
+
+

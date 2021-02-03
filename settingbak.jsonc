@@ -1,0 +1,361 @@
+{
+    //workbench settings
+    "workbench.startupEditor": "none",
+    "workbench.activityBar.visible": true,
+    "workbench.quickOpen.closeOnFocusLost": false,
+    "workbench.settings.useSplitJSON": false,
+    "workbench.sideBar.location": "left",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.centeredLayoutAutoResize": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    // editor settings
+    "editor.minimap.enabled": true,
+    "editor.minimap.renderCharacters": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.fontFamily": "liganoki",
+    "editor.fontWeight": "normal",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
+    "editor.cursorStyle": "block",
+    "editor.rulers": [
+        79,
+        83
+    ],
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 79,
+    "editor.wrappingIndent": "indent",
+    "editor.tabCompletion": "on",
+    "editor.indentSize": 2,
+    // "editor.acceptSuggestionOnEnter": "off",
+    // "editor.renderControlCharacters": true,
+    // "editor.snippetSuggestions": "bottom",
+    // "editor.suggestOnTriggerCharacters": true,
+    // "editor.quickSuggestionsDelay": 100,
+    // "editor.quickSuggestions": {
+    //     "other": true,
+    //     "comments": false,
+    //     "strings": false
+    // },
+    // C/C++ settings
+    "C_Cpp.formatting": "Disabled",
+    "C_Cpp.intelliSenseCacheSize": 5120,
+    "C_Cpp.autocomplete": "Default",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.intelliSenseEngine": "Default",
+    "clang.cxxflags": [
+        "-std=c++11",
+        "-Wall"
+    ],
+    "C_Cpp.errorSquiggles": "Disabled", // 用 clang 了，把默认的禁掉，默认的不好用
+    "clang.completion.enable": false, // clang completion 好像有点慢，用 vscode 自带的
+    "clang.diagnostic.delay": 0,
+    "editor.formatOnType": true,
+    "C_Cpp.clang_format_style": "Google",
+    "[cpp]": {
+        "editor.tabSize": 2,
+        // 这个必须全部都改成 true 不然有时候 auto complete 会不工作
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+        }
+    },
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "additional/paths",
+                "${default}"
+            ],
+            "defines": [
+                "${default}"
+            ],
+            "macFrameworkPath": [
+                "${default}",
+                "additional/paths"
+            ],
+            "forcedInclude": [
+                "${default}",
+                "additional/paths"
+            ],
+            "compileCommands": "${default}",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${default}",
+                "path": [
+                    "${default}",
+                    "additional/paths"
+                ]
+            },
+            "intelliSenseMode": "${default}",
+            "cStandard": "${default}",
+            "cppStandard": "${default}",
+            "compilerPath": "${default}"
+        }
+    ],
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "(gdb) Launch",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+                "args": [],
+                "stopAtEntry": false,
+                "cwd": "${workspaceFolder}",
+                "environment": [],
+                "externalConsole": true,
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "为 gdb 启用整齐打印",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ],
+                "preLaunchTask": "build"
+            }
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "build",
+                "type": "process",
+                "command": "g++",
+                "args": [
+                    "-g",
+                    "-Wall",
+                    "-std=c++14",
+                    "-lm",
+                    "${file}",
+                    "-o",
+                    "${fileDirname}/${fileBasenameNoExtension}.o"
+                ],
+                "presentation": {
+                    "echo": false,
+                    "reveal": "silent",
+                    "showReuseMessage": false
+                },
+                "problemMatcher": "$gcc",
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "windows": {
+                    "args": [
+                        "-g",
+                        "-Wall",
+                        "-std=c++14",
+                        "-lm",
+                        "${file}",
+                        "-o",
+                        "${fileDirname}/${fileBasenameNoExtension}.exe"
+                    ]
+                }
+            },
+            {
+                "label": "run",
+                "type": "shell",
+                "dependsOn": "build",
+                "command": "${fileDirname}/${fileBasenameNoExtension}.o",
+                "presentation": {
+                    "focus": true
+                },
+                "group": {
+                    "kind": "test",
+                    "isDefault": true
+                },
+                "windows": {
+                    "command": "${fileDirname}/${fileBasenameNoExtension}.exe"
+                }
+            }
+        ]
+    },
+    "cSpell.enabledLanguageIds": [
+        "asciidoc",
+        "c",
+        "cpp",
+        "csharp",
+        "css",
+        "go",
+        "handlebars",
+        "html",
+        "jade",
+        "javascriptreact",
+        "json",
+        "latex",
+        "less",
+        "markdown",
+        "php",
+        "plaintext",
+        "pub",
+        "python",
+        "restructuredtext",
+        "rust",
+        "scss",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yml"
+    ],
+    "shellLauncher.shells.windows": [
+        {
+            "shell": "D:\\cygwin64\\bin\\bash.exe",
+            "args": [],
+            "label": "cygwinBash"
+        },
+        {
+            "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": [],
+            "label": "PowerShell"
+        }
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/.idea": true,
+        "**/.vscode": false,
+        "**/yarn.lock": true,
+        "**/tmp": true,
+        "**/*.o": true,
+        "**/*.exe": true,
+        "**/*.class": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/.git": true,
+        "**/tmp": true,
+        "**/build": true
+    },
+    "workbench.iconTheme": "vscode-icons",
+    // integrated terminal settings
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+    "terminal.integrated.shellArgs.windows": [
+        "-Nologo"
+    ],
+    "terminal.integrated.fontFamily": "monospace",
+    "terminal.integrated.fontSize": 16,
+    // zen mode settings
+    "zenMode.centerLayout": true,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideTabs": true,
+    "zenMode.fullScreen": false,
+    "zenMode.hideActivityBar": true,
+    "zenMode.hideStatusBar": true,
+    "zenMode.restore": true,
+    // explorer settings
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "liveshare.account": "",
+    "liveshare.audio.startCallOnShare": true,
+    "python.languageServer": "Pylance",
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "python.pythonPath": "D:\\ProgramData\\Anaconda3\\python.exe",
+    "C_Cpp.updateChannel": "Insiders",
+    "http.proxySupport": "off",
+    "kite.showWelcomeNotificationOnStartup": false,
+    "editor.accessibilitySupport": "on",
+    "cmake.generator": "MinGW Makefiles",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.multiCursorModifier": "ctrlCmd",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 500,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex",
+            "tools": [
+                "xelatex"
+            ]
+        }
+        ,
+        {
+            "name": "xelatex -> biber -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "biber",
+                "xelatex",
+                "xelatex"
+            ]
+        }
+        
+        ,
+        {
+            "name": "xelatex -> bibtex -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+        ,
+        {
+            "name": "biber",
+            "command": "biber",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.view.pdf.viewer": "tab",
+    "tabnine.experimentalAutoImports": true,
+    "rewrap.autoWrap.enabled": false
+}
